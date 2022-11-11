@@ -46,7 +46,7 @@ function Navbar() {
                   : 'navbarListItemName'
               }
             >
-              Offers
+              Donations
             </p>
           </li>
           <li className='navbarListItem' onClick={() => navigate('/profile')}>
