@@ -26,9 +26,9 @@ function Explore() {
               >
                 <p className='swiperSlideText'>About Us</p>
                 <p className='swiperSlidePrice'>
-                <b>Generous Giving 💰</b> is a charity donation platform that seeks to connect the donor and recipient. We provide you with the most convenient and easy way to donate items and cash to those in need in Kenya.
-                We also connect you to causes of your choice such as NGOs where you can directly contact them and donate.
-                Get Rewards 🎁🎁 the more you donate. Our brand partners provide our donors <b>gifts</b> as a <b>gesture of thanks</b> for making a difference. Be ready to get surprised 😊!
+                <b>Gracious Giving 💰</b> is a charity donation platform that seeks to connect the donor and recipient. We provide you with the most convenient and easy way to donate items to those in need in Kenya.
+                We also connect you to causes of your choice (NGOs) where you can directly contact them and donate.
+                Get Rewards 🎁🎁 the more you donate. We provide our donors <b>gifts</b> as a <b>gesture of thanks</b> for making a difference. Be ready to get surprised 😊!
                 </p>
               </div>
             </SwiperSlide>
