@@ -27,7 +27,7 @@ function Offers() {
         // Create a query
         const q = query(
           listingsRef,
-          where('offer', '==', true),
+          where('type', '==', 'donor'),
           orderBy('timestamp', 'desc'),
           limit(10)
         )
@@ -66,7 +66,7 @@ function Offers() {
       // Create a query
       const q = query(
         listingsRef,
-        where('offer', '==', true),
+        where('type', '==', 'donor'),
         orderBy('timestamp', 'desc'),
         startAfter(lastFetchedListing),
         limit(10)
@@ -90,7 +90,7 @@ function Offers() {
       setListings((prevState) => [...prevState, ...listings])
       setLoading(false)
     } catch (error) {
-      toast.error('Could not fetch listings')
+      toast.error('Could not fetch donations')
     }
   }
 
@@ -125,7 +125,7 @@ function Offers() {
           )}
         </>
       ) : (
-        <p>There are no current offers</p>
+        <p>There are no active donations</p>
       )}
     </div>
   )

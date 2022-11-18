@@ -35,7 +35,7 @@ function Slider() {
 
     fetchListings()
   }, [])
-  console.log(listings)
+
 
   if (loading) {
     return <Spinner />
@@ -48,7 +48,7 @@ function Slider() {
   return (
     listings && (
       <>
-        <p className='exploreHeading'>Most Popular</p>
+        <p className='pageHeader'>Hot Donations 🔥🔥🔥</p>
 
         <Swiper slidesPerView={1} pagination={{ clickable: true }}>
           {listings.map(({ data, id }) => (
@@ -60,6 +60,7 @@ function Slider() {
                 style={{
                   background: `url(${data.imageUrls[0]}) center no-repeat`,
                   backgroundSize: 'cover',
+                  direction: 'ltr'
                 }}
                 className='swiperSlideDiv'
               >

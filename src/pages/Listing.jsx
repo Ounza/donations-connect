@@ -121,7 +121,7 @@ function Listing() {
         <p className='listingLocationTitle'>Location</p>
         <p className='listingName'>{listing.location}</p>
         <p className='listingType'>
-          Verified {listing.type === 'ngo' ? 'Ngo' : 'Donate'}
+          Verified {listing.type === 'ngo' ? 'Ngo' : 'Donor'}
         </p>
 
 
@@ -136,7 +136,7 @@ function Listing() {
             to={`/contact/${listing.userRef}?listingName=${listing.name}`}
             className='primaryButton'
           >
-            Contact NGO
+            Contact {listing.type === 'ngo' ? 'Ngo' : 'Donor'}
           </Link>
         )}
       </div>

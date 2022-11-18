@@ -3,6 +3,8 @@ import { ReactComponent as DeleteIcon } from '../assets/svg/deleteIcon.svg'
 import { ReactComponent as EditIcon } from '../assets/svg/editIcon.svg'
 import bedIcon from '../assets/svg/bedIcon.svg'
 import bathtubIcon from '../assets/svg/bathtubIcon.svg'
+import { FaHome } from 'react-icons/fa'
+import homeIcon from '../assets/svg/homeIcon.svg'
 
 /**
  <p className='categoryListingPrice'>
@@ -45,8 +47,10 @@ function ListingItem({ listing, id, onEdit, onDelete }) {
           className='categoryListingImg'
         />
         <div className='categoryListingDetails'>
-          <p className='categoryListingLocation'>{listing.location}</p>
-          <p className='categoryListingName'>{listing.name}</p>
+        <p className='categoryListingName'>{listing.name}</p>
+        <p className='categoryListingLocation'><img src={homeIcon} alt=""/> {listing.location}</p>
+        <p className='categoryListingDescription'>{listing.description}</p>
+          
 
          
         </div>

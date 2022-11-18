@@ -18,13 +18,11 @@ function CreateListing() {
   const [geolocationEnabled, setGeolocationEnabled] = useState(true)
   const [loading, setLoading] = useState(false)
   const [formData, setFormData] = useState({
-    type: 'donation',
+    type: 'donor',
     name: '',
     address: '',
     description: '',
     images: {},
-    latitude: 0,
-    longitude: 0,
   })
 
   const {
@@ -33,8 +31,6 @@ function CreateListing() {
     address,
     description,
     images,
-    latitude,
-    longitude,
   } = formData
 
   const auth = getAuth()
@@ -69,33 +65,7 @@ function CreateListing() {
       return
     }
 
-    let geolocation = {}
-    let location
-
-    if (geolocationEnabled) {
-      const response = await fetch(
-        `https://maps.googleapis.com/maps/api/geocode/json?address=${address}&key=${process.env.REACT_APP_GEOCODE_API_KEY}`
-      )
-
-      const data = await response.json()
-
-      geolocation.lat = data.results[0]?.geometry.location.lat ?? 0
-      geolocation.lng = data.results[0]?.geometry.location.lng ?? 0
-
-      location =
-        data.status === 'ZERO_RESULTS'
-          ? undefined
-          : data.results[0]?.formatted_address
-
-      if (location === undefined || location.includes('undefined')) {
-        setLoading(false)
-        toast.error('Please enter a correct address')
-        return
-      }
-    } else {
-      geolocation.lat = latitude
-      geolocation.lng = longitude
-    }
+ 
 
     // Store image in firebase
     const storeImage = async (image) => {
@@ -149,7 +119,6 @@ function CreateListing() {
     const formDataCopy = {
       ...formData,
       imageUrls,
-      geolocation,
       timestamp: serverTimestamp(),
     }
 
@@ -203,7 +172,7 @@ function CreateListing() {
 
       <main>
         <form onSubmit={onSubmit}>
-          <label className='formLabel'>NGO / Recipient</label>
+          <label className='formLabel'>NGO / Donor</label>
           <div className='formButtons'>
             <button
               type='button'
@@ -216,12 +185,12 @@ function CreateListing() {
             </button>
             <button
               type='button'
-              className={type === 'recipient' ? 'formButtonActive' : 'formButton'}
+              className={type === 'donor' ? 'formButtonActive' : 'formButton'}
               id='type'
               value='recipient'
               onClick={onMutate}
             >
-              Recipient
+              Donor
             </button>
           </div>
 
@@ -242,9 +211,9 @@ function CreateListing() {
             className='formInputName'
             type='text'
             id='description'
-            value={name}
+            value={description}
             onChange={onMutate}
-            maxLength='32'
+            maxLength='200'
             minLength='10'
             required
           />
@@ -258,33 +227,6 @@ function CreateListing() {
             onChange={onMutate}
             required
           />
-
-          {!geolocationEnabled && (
-            <div className='formLatLng flex'>
-              <div>
-                <label className='formLabel'>Latitude</label>
-                <input
-                  className='formInputSmall'
-                  type='number'
-                  id='latitude'
-                  value={latitude}
-                  onChange={onMutate}
-                  required
-                />
-              </div>
-              <div>
-                <label className='formLabel'>Longitude</label>
-                <input
-                  className='formInputSmall'
-                  type='number'
-                  id='longitude'
-                  value={longitude}
-                  onChange={onMutate}
-                  required
-                />
-              </div>
-            </div>
-          )}
 
 
 
