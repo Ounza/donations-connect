@@ -113,35 +113,23 @@ function Listing() {
 
 
         </p>
-        <p className='listingLocation'>{listing.location}</p>
+        <p className='listingName'>
+          {listing.description} 
+
+
+        </p>
+        <p className='listingLocationTitle'>Location</p>
+        <p className='listingName'>{listing.location}</p>
         <p className='listingType'>
-          For {listing.type === 'ngo' ? 'Ngo' : 'Donate'}
+          Verified {listing.type === 'ngo' ? 'Ngo' : 'Donate'}
         </p>
 
 
 
 
-        <p className='listingLocationTitle'>Location</p>
+        
 
-        <div className='leafletContainer'>
-          <MapContainer
-            style={{ height: '100%', width: '100%' }}
-            center={[listing.geolocation._lat, listing.geolocation._long]}
-            zoom={13}
-            scrollWheelZoom={false}
-          >
-            <TileLayer
-              attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-              url='https://{s}.tile.openstreetmap.de/tiles/osmde/{z}/{x}/{y}.png'
-            />
-
-            <Marker
-              position={[listing.geolocation._lat, listing.geolocation._long]}
-            >
-              <Popup>{listing.location}</Popup>
-            </Marker>
-          </MapContainer>
-        </div>
+        
 
         {auth.currentUser?.uid !== listing.userRef && (
           <Link
@@ -157,4 +145,25 @@ function Listing() {
 }
 
 export default Listing
+/** 
+<div className='leafletContainer'>
+          <MapContainer
+          style={{width:'100%', height: '100%'}}
+            center={[51.505,-0.09]}
+            zoom={13}
+            scrollWheelZoom={false}
+          >
+            <TileLayer
+              attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+            />
 
+            <Marker
+              position={[51.505,-0.09]}
+            >
+              <Popup>{listing.location}</Popup>
+            </Marker>
+          </MapContainer>
+        </div>
+
+        */

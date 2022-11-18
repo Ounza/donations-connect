@@ -2,6 +2,7 @@ import {BrowserRouter as Router, Routes, Route} from 'react-router-dom'
 import {ToastContainer} from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import Navbar from './components/Navbar'
+import HomePage from './pages/HomePage'
 import PrivateRoute from './components/PrivateRoute'
 import Offers from './pages/Offers'
 import Explore from './pages/Explore'
@@ -14,6 +15,7 @@ import CreateListing from './pages/CreateListing'
 import EditListing from './pages/EditListing'
 import Listing from './pages/Listing'
 import Contact from './pages/Contact'
+import ExploreIconLink from './components/ExploreIconLink'
 
 
 function App() {

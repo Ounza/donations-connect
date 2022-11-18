@@ -35,6 +35,7 @@ function Slider() {
 
     fetchListings()
   }, [])
+  console.log(listings)
 
   if (loading) {
     return <Spinner />
@@ -47,7 +48,7 @@ function Slider() {
   return (
     listings && (
       <>
-        <p className='exploreHeading'>Recommended</p>
+        <p className='exploreHeading'>Most Popular</p>
 
         <Swiper slidesPerView={1} pagination={{ clickable: true }}>
           {listings.map(({ data, id }) => (
@@ -55,7 +56,7 @@ function Slider() {
               key={id}
               onClick={() => navigate(`/category/${data.type}/${id}`)}
             >
-              <div
+                <div
                 style={{
                   background: `url(${data.imageUrls[0]}) center no-repeat`,
                   backgroundSize: 'cover',
@@ -64,8 +65,7 @@ function Slider() {
               >
                 <p className='swiperSlideText'>{data.name}</p>
                 <p className='swiperSlidePrice'>
-                  ${data.discountedPrice ?? data.regularPrice}{' '}
-                  {data.type === 'rent' && '/ month'}
+                  {data.location}
                 </p>
               </div>
             </SwiperSlide>
@@ -75,5 +75,7 @@ function Slider() {
     )
   )
 }
+
+
 
 export default Slider

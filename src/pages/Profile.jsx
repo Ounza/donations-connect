@@ -149,11 +149,6 @@ function Profile() {
           </form>
         </div>
 
-        <Link to='/create-listing' className='createListing'>
-          <img src={homeIcon} alt='home' />
-          <p>Donate an item</p>
-          <img src={arrowRight} alt='arrow right' />
-        </Link>
 
         {!loading && listings?.length > 0 && (
           <>

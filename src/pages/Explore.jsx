@@ -7,13 +7,13 @@ function Explore() {
   return (
     <div className='explore'>
       <header>
-        <p className='pageHeader'>Explore</p>
+        <p className='pageHeader'>Gracious Giving</p>
       </header>
 
       <main>
         <Slider />
 
-        <p className='exploreCategoryHeading'>Categories</p>
+        <p className='exploreCategoryHeading'>Donate To A Cause</p>
         <div className='exploreCategories'>
           <Link to='/category/ngo'>
             <img

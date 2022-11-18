@@ -10,6 +10,9 @@ import {
   startAfter,
 } from 'firebase/firestore'
 import { db } from '../firebase.config'
+import { Link } from 'react-router-dom'
+import arrowRight from '../assets/svg/keyboardArrowRightIcon.svg'
+import homeIcon from '../assets/svg/homeIcon.svg'
 import { toast } from 'react-toastify'
 import Spinner from '../components/Spinner'
 import ListingItem from '../components/ListingItem'
@@ -51,7 +54,7 @@ function Category() {
         setListings(listings)
         setLoading(false)
       } catch (error) {
-        toast.error('Could not fetch listings')
+        toast.error('Could not fetch ngos')
       }
     }
 
@@ -130,7 +133,13 @@ function Category() {
           )}
         </>
       ) : (
-        <p>No listings for {params.categoryName}</p>
+        <>
+        <Link to='/create-listing' className='createListing'>
+          <img src={homeIcon} alt='home' />
+          <p>Donate an item</p>
+          <img src={arrowRight} alt='arrow right' />
+        </Link>
+        </>
       )}
     </div>
   )
