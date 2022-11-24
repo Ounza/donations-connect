@@ -20,7 +20,7 @@ function Contact() {
       if (docSnap.exists()) {
         setLandlord(docSnap.data())
       } else {
-        toast.error('Could not get NGO contact details')
+        toast.error('Could not get Donor contact details')
       }
     }
 
@@ -32,7 +32,7 @@ function Contact() {
   return (
     <div className='pageContainer'>
       <header>
-        <p className='pageHeader'>Contact NGO</p>
+        <p className='pageHeader'>Contact Donor</p>
       </header>
 
       {landlord !== null && (

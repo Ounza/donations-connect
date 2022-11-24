@@ -58,7 +58,7 @@ function EditListing() {
         setLoading(false)
       } else {
         navigate('/')
-        toast.error('Listing does not exist')
+        toast.error('Donation does not exist')
       }
     }
 

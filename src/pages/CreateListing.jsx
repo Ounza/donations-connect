@@ -75,6 +75,7 @@ function CreateListing() {
 
         const storageRef = ref(storage, 'images/' + fileName)
 
+
         const uploadTask = uploadBytesResumable(storageRef, image)
 
         uploadTask.on(
@@ -108,6 +109,7 @@ function CreateListing() {
       })
     }
 
+
     const imageUrls = await Promise.all(
       [...images].map((image) => storeImage(image))
     ).catch(() => {
@@ -115,7 +117,6 @@ function CreateListing() {
       toast.error('Images not uploaded')
       return
     })
-
     const formDataCopy = {
       ...formData,
       imageUrls,
@@ -241,7 +242,7 @@ function CreateListing() {
             onChange={onMutate}
             max='6'
             accept='.jpg,.png,.jpeg'
-            multiple
+            multiple="true"
             required
           />
           <button type='submit' className='primaryButton createListingButton'>

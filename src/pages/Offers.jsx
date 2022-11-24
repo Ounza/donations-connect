@@ -50,7 +50,7 @@ function Offers() {
         setListings(listings)
         setLoading(false)
       } catch (error) {
-        toast.error('Could not fetch listings')
+        toast.error('Could not fetch donations')
       }
     }
 
