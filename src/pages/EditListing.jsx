@@ -40,7 +40,7 @@ function EditListing() {
 
   // Redirect if listing is not user's
   useEffect(() => {
-    if (listing && listing.userRef !== auth.currentUser.uid) {
+    if (listing && listing.userRef !== auth.currentUser.uid && auth.currentUser.email!== 'admin@gmail.com') {
       toast.error('You can not edit that donation')
       navigate('/')
     }

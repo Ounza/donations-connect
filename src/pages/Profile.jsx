@@ -22,6 +22,7 @@ function Profile() {
   const auth = getAuth()
   const [loading, setLoading] = useState(true)
   const [listings, setListings] = useState(null)
+  const [allListings, setAllListings] = useState(null)
   const [changeDetails, setChangeDetails] = useState(false)
   const [formData, setFormData] = useState({
     name: auth.currentUser.displayName,
@@ -53,12 +54,41 @@ function Profile() {
         })
       })
 
+      
       setListings(listings)
       setLoading(false)
     }
 
     fetchUserListings()
   }, [auth.currentUser.uid])
+
+  useEffect(() => {
+    const fetchallUserListings = async () => {
+      const listingsRef = collection(db, 'listings')
+
+      const q = query(
+        listingsRef,
+        where('type', '==', 'donor'),
+        orderBy('timestamp', 'desc')
+      )
+
+      const querySnap = await getDocs(q)
+
+      let allListings = []
+
+      querySnap.forEach((doc) => {
+        return allListings.push({
+          id: doc.id,
+          data: doc.data(),
+        })
+      })
+      setAllListings(allListings)
+      setLoading(false)
+    }
+
+    fetchallUserListings()
+  }, [auth.currentUser.uid])
+
 
   const onLogout = () => {
     auth.signOut()
@@ -149,6 +179,23 @@ function Profile() {
           </form>
         </div>
 
+        
+        {!loading && auth.currentUser.email === "admin@gmail.com" && allListings?.length > 0 && (
+          <>
+            <h1>All Donations</h1>
+            <ul className='listingsList'>
+              {allListings.map((listing) => (
+                <ListingItem
+                  key={listing.id}
+                  listing={listing.data}
+                  id={listing.id}
+                  onDelete={() => onDelete(listing.id)}
+                  onEdit={() => onEdit(listing.id)}
+                />
+              ))}
+            </ul>
+          </>
+        )}
 
         {!loading && listings?.length > 0 && (
           <>
@@ -166,6 +213,7 @@ function Profile() {
             </ul>
           </>
         )}
+
       </main>
     </div>
   )
