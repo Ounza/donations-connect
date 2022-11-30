@@ -129,6 +129,7 @@ function Profile() {
         (listing) => listing.id !== listingId
       )
       setListings(updatedListings)
+      setAllListings(updatedListings)
       toast.success('Successfully removed Donation.')
     }
   }
