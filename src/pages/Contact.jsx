@@ -6,25 +6,25 @@ import { toast } from 'react-toastify'
 
 function Contact() {
   const [message, setMessage] = useState('')
-  const [landlord, setLandlord] = useState(null)
+  const [donor, setDonor] = useState(null)
   // eslint-disable-next-line
   const [searchParams, setSearchParams] = useSearchParams()
 
   const params = useParams()
 
   useEffect(() => {
-    const getLandlord = async () => {
+    const getDonor = async () => {
       const docRef = doc(db, 'users', params.landlordId)
       const docSnap = await getDoc(docRef)
-
+      console.log(docSnap)
       if (docSnap.exists()) {
-        setLandlord(docSnap.data())
+        setDonor(docSnap.data())
       } else {
         toast.error('Could not get Donor contact details')
       }
     }
 
-    getLandlord()
+    getDonor()
   }, [params.landlordId])
 
   const onChange = (e) => setMessage(e.target.value)
@@ -35,10 +35,10 @@ function Contact() {
         <p className='pageHeader'>Contact Donor</p>
       </header>
 
-      {landlord !== null && (
+      {donor !== null && (
         <main>
           <div className='contactLandlord'>
-            <p className='landlordName'>Contact {landlord?.name}</p>
+            <p className='landlordName'>Contact {donor?.name}</p>
           </div>
 
           <form className='messageForm'>
@@ -56,7 +56,7 @@ function Contact() {
             </div>
 
             <a
-              href={`mailto:${landlord.email}?Subject=${searchParams.get(
+              href={`mailto:${donor.email}?Subject=${searchParams.get(
                 'listingName'
               )}&body=${message}`}
             >
